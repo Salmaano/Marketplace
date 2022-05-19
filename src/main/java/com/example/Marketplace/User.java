@@ -15,13 +15,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int ID;
+
     @Column(name="first_name")
-    @Size(min=2, max=30)
+    @Size(min=2, max=30, message = "Name must be between 2 and 30 characters long")
     private String firstName;
+
     @Column(name="last_name")
-    @Size(min=2, max=30)
+    @Size(min=2, max=30, message = "Name must be between 2 and 30 characters long")
     private String lastName;
-    @Pattern(regexp="((\\+|00)([1-9][0-9]{0,2}-)([0-9]{4,12}))|(03[0-9]{9})")
+
+    @Column(unique=true)
+    @Pattern(regexp="((\\+|00)([1-9][0-9]{0,2}-)([0-9]{4,12}))|(03[0-9]{9})",message = "The number provided does not adhere to the format specified")
     private String number;
 
     
