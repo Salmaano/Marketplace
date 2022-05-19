@@ -49,6 +49,7 @@ public class ExceptionHandling extends ResponseEntityExceptionHandler {
             String errorMessage = error.getDefaultMessage();
             errors.put(fieldName,errorMessage);
         });
-        return new ResponseEntity<>(errors, HttpStatus.UNPROCESSABLE_ENTITY);
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        //can also use UNPROCESSABLE ENTITY, consult yousuf or umer bhai
     }
 }

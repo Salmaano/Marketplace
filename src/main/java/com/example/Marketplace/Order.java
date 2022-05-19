@@ -2,6 +2,7 @@ package com.example.Marketplace;
 
 import java.sql.Date;
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 
 @Entity(name="Order")
 @Table(name="orders")
@@ -15,6 +16,7 @@ public class Order {
     private int sellerID;
     @Column(name="buyer_id")
     private int buyerID;
+
     @Column(name="listing_id")
     private int listingID;
     private double amount;

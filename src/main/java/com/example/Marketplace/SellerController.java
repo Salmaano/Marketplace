@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path="/Seller")
+@RequestMapping(path="/seller")
 public class SellerController {
 
     private SellerRepository sellerRepository;
@@ -39,7 +39,7 @@ public class SellerController {
     @PostMapping(path="/{id}/createListing")
     public @ResponseBody Listing createListing(@RequestParam String productName, @RequestParam double price, @RequestParam Date date, @PathVariable int id){
         //without is present check, add it later
-        Seller s = sellerRepository.findById(id).get();
+        Seller s = (Seller)sellerRepository.findById(id).get();
         Listing l = s.createListing(productName,price,date);
         return listingRepository.save(l);
     }
