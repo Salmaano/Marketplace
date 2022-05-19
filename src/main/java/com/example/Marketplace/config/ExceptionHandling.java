@@ -1,4 +1,4 @@
-package com.example.Marketplace;
+package com.example.Marketplace.config;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

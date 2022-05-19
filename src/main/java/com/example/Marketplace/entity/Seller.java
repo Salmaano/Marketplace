@@ -1,8 +1,6 @@
-package com.example.Marketplace;
+package com.example.Marketplace.entity;
 
 import java.sql.Date;
-
-import org.yaml.snakeyaml.events.Event.ID;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

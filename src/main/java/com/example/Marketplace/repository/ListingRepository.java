@@ -1,4 +1,5 @@
-package com.example.Marketplace;
+package com.example.Marketplace.repository;
+import com.example.Marketplace.entity.Listing;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;

@@ -1,4 +1,4 @@
-package com.example.Marketplace;
+package com.example.Marketplace.entity;
 
 import javax.persistence.*;
 import java.sql.Date;

@@ -1,12 +1,13 @@
-package com.example.Marketplace;
+package com.example.Marketplace.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import com.example.Marketplace.entity.Listing;
+import com.example.Marketplace.repository.ListingRepository;
+import com.example.Marketplace.entity.Seller;
+import com.example.Marketplace.repository.SellerRepository;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,9 +38,10 @@ public class SellerController {
     }
 
     @PostMapping(path="/{id}/createListing")
-    public @ResponseBody Listing createListing(@RequestParam String productName, @RequestParam double price, @RequestParam Date date, @PathVariable int id){
+    public @ResponseBody
+    Listing createListing(@RequestParam String productName, @RequestParam double price, @RequestParam Date date, @PathVariable int id){
         //without is present check, add it later
-        Seller s = (Seller)sellerRepository.findById(id).get();
+        Seller s = sellerRepository.findById(id).get();
         Listing l = s.createListing(productName,price,date);
         return listingRepository.save(l);
     }

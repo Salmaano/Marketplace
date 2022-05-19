@@ -1,4 +1,4 @@
-package com.example.Marketplace;
+package com.example.Marketplace.entity;
 
 
 import javax.persistence.Column;

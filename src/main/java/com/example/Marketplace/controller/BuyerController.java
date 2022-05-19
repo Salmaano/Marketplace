@@ -1,18 +1,15 @@
-package com.example.Marketplace;
+package com.example.Marketplace.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.FieldError;
+import com.example.Marketplace.entity.Buyer;
+import com.example.Marketplace.entity.Listing;
+import com.example.Marketplace.entity.Order;
+import com.example.Marketplace.repository.BuyerRepository;
+import com.example.Marketplace.repository.ListingRepository;
+import com.example.Marketplace.repository.OrderRepository;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 @Validated
 @RestController
@@ -67,7 +64,8 @@ public class BuyerController {
     }
 
     @GetMapping(path="/{id}/makeOrder/{listing_id}")
-    public @ResponseBody Order makeOrder(@PathVariable int id, @PathVariable int listing_id ){
+    public @ResponseBody
+    Order makeOrder(@PathVariable int id, @PathVariable int listing_id ){
         Listing l  = listingRepository.findById(listing_id).get();
         Order o = new Order(l.getSellerID(),id,l.getListingID(),l.getPrice(),l.getDate());
         return orderRepository.save(o);
