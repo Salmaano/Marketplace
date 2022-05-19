@@ -1,7 +1,9 @@
 package com.example.Marketplace;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity(name="Listing")
 @Table(name="listings")
@@ -14,19 +16,22 @@ public class Listing {
     private int listingID;
     @Column(name="seller_id")
     private int sellerID;
+    @Max(value=1000000, message = "You cannot set a price higher than a million")
     private double price;
+
     private Date date;
+    private final LocalDate localDate = LocalDate.now();
 
     public Listing(){
 
     }
 
-    public Listing(String productName, int sellerID, double price, Date date){
+    public Listing(String productName, int sellerID, double price){
 
         this.productName = productName;
         this.sellerID = sellerID;
         this.price = price;
-        this.date = date;
+        this.date = java.sql.Date.valueOf(localDate);
     }
 
     /**

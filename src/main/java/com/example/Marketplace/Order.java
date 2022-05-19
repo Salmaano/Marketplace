@@ -1,6 +1,7 @@
 package com.example.Marketplace;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 
@@ -16,22 +17,22 @@ public class Order {
     private int sellerID;
     @Column(name="buyer_id")
     private int buyerID;
-
     @Column(name="listing_id")
     private int listingID;
     private double amount;
     private Date date;
+    private final LocalDate localDate = LocalDate.now();
 
 
     public Order(){
 
     }
-    public Order(int sellerID, int buyerID, int listingID, double amount, Date date){
+    public Order(int sellerID, int buyerID, int listingID, double amount){
 
         this.sellerID = sellerID;
         this.buyerID = buyerID;
         this.amount = amount;
-        this.date = date;
+        this.date = java.sql.Date.valueOf(localDate);
         this.listingID = listingID;
 
     }

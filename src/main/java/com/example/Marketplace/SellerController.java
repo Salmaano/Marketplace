@@ -37,10 +37,10 @@ public class SellerController {
     }
 
     @PostMapping(path="/{id}/createListing")
-    public @ResponseBody Listing createListing(@RequestParam String productName, @RequestParam double price, @RequestParam Date date, @PathVariable int id){
+    public @ResponseBody Listing createListing(@RequestParam String productName, @RequestParam double price, @PathVariable int id){
         //without is present check, add it later
         Seller s = (Seller)sellerRepository.findById(id).get();
-        Listing l = s.createListing(productName,price,date);
+        Listing l = s.createListing(productName,price);
         return listingRepository.save(l);
     }
     @GetMapping(path="/{id}/listings")

@@ -69,7 +69,7 @@ public class BuyerController {
     @GetMapping(path="/{id}/makeOrder/{listing_id}")
     public @ResponseBody Order makeOrder(@PathVariable int id, @PathVariable int listing_id ){
         Listing l  = listingRepository.findById(listing_id).get();
-        Order o = new Order(l.getSellerID(),id,l.getListingID(),l.getPrice(),l.getDate());
+        Order o = new Order(l.getSellerID(),id,l.getListingID(),l.getPrice());
         return orderRepository.save(o);
 
     }

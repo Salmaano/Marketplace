@@ -6,10 +6,12 @@ import javax.validation.ConstraintValidatorContext;
 public class NumberValidator implements ConstraintValidator<NumberConstraint, String> {
 
     private BuyerRepository buyerRepository;
+    private SellerRepository sellerRepository;
 
-    public NumberValidator(BuyerRepository buyerRepository){
+    public NumberValidator(BuyerRepository buyerRepository, SellerRepository sellerRepository){
 
         this.buyerRepository = buyerRepository;
+        this.sellerRepository = sellerRepository;
     }
 
     @Override
@@ -23,8 +25,13 @@ public class NumberValidator implements ConstraintValidator<NumberConstraint, St
     @Override
     public boolean isValid(String numberField, ConstraintValidatorContext cxt){
 
-        if (buyerRepository.findByNumber(numberField) == null){
+        if (buyerRepository.findByNumber(numberField) == null & sellerRepository.findByNumber(numberField) == null){
             return true;
+        }
+
+        else if(buyerRepository.findByNumber(numberField) == null | sellerRepository.findByNumber(numberField) == null)
+        {
+
         }
         return false;
     }

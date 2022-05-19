@@ -23,9 +23,9 @@ public class Seller extends User {
     }
 
 
-    public Listing createListing(String productName, double price, Date date){
+    public Listing createListing(String productName, double price){
 
-        return new Listing(productName, getID(), price, date);
+        return new Listing(productName, getID(), price);
 
 
     }
