@@ -1,11 +1,13 @@
 package com.example.Marketplace.controller;
 
+import com.example.Marketplace.dao.BuyerDao;
 import com.example.Marketplace.entity.Buyer;
 import com.example.Marketplace.entity.Listing;
 import com.example.Marketplace.entity.Order;
 import com.example.Marketplace.repository.BuyerRepository;
 import com.example.Marketplace.repository.ListingRepository;
 import com.example.Marketplace.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,14 +20,18 @@ public class BuyerController {
 
 
     private BuyerRepository buyerRepository;
+
+    private BuyerDao buyerDao;
+
     private ListingRepository listingRepository;
     private OrderRepository orderRepository;
 
-    public BuyerController(BuyerRepository buyerRepository, ListingRepository listingRepository, OrderRepository orderRepository) {
+    public BuyerController(BuyerRepository buyerRepository, ListingRepository listingRepository, OrderRepository orderRepository, BuyerDao buyerDao) {
 
         this.buyerRepository = buyerRepository;
         this.listingRepository = listingRepository;
         this.orderRepository = orderRepository;
+        this.buyerDao = buyerDao;
     }
 
     /*@PostMapping(path="/create")
@@ -40,7 +46,7 @@ public class BuyerController {
     //@valid is added to enable bean validation on the request body i think??
     @PostMapping(path="/create")
     public @ResponseBody String createNewBuyer (@Valid @RequestBody Buyer b) {
-        buyerRepository.save(b);
+        buyerDao.save(b);
         return "Saved, this is your ID for future reference: "+b.getID();
     }
 
