@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-
+@Component("BuyerDao")
 public class BuyerDao implements Dao<Buyer>{
 
     //this may or may not work cus

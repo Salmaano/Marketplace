@@ -20,9 +20,7 @@ public class BuyerController {
 
 
     private BuyerRepository buyerRepository;
-
     private BuyerDao buyerDao;
-
     private ListingRepository listingRepository;
     private OrderRepository orderRepository;
 
