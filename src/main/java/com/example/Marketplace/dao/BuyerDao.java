@@ -3,12 +3,13 @@ package com.example.Marketplace.dao;
 import com.example.Marketplace.config.DuplicateFoundException;
 import com.example.Marketplace.entity.Buyer;
 import com.example.Marketplace.repository.BuyerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+//potentially add @Autowired later
 @Component("BuyerDao")
 public class BuyerDao implements Dao<Buyer>{
 

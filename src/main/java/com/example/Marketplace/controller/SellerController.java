@@ -1,5 +1,6 @@
 package com.example.Marketplace.controller;
 
+import com.example.Marketplace.dao.SellerDao;
 import com.example.Marketplace.entity.Listing;
 import com.example.Marketplace.repository.ListingRepository;
 import com.example.Marketplace.entity.Seller;
@@ -14,11 +15,11 @@ import java.util.List;
 @RequestMapping(path="/seller")
 public class SellerController {
 
-    private SellerRepository sellerRepository;
+    private SellerDao sellerDao;
     private ListingRepository listingRepository;
 
-    public SellerController(SellerRepository sellerRepository, ListingRepository listingRepository){
-        this.sellerRepository = sellerRepository;
+    public SellerController(SellerDao sellerDao, ListingRepository listingRepository){
+        this.sellerDao = sellerDao;
         this.listingRepository = listingRepository;
     }
 
@@ -33,7 +34,7 @@ public class SellerController {
 
     @PostMapping(path="/create")
     public @ResponseBody String createNewSeller (@Valid @RequestBody Seller s) {
-        sellerRepository.save(s);
+        sellerDao.save(s);
         return "Saved, this is your ID for future reference: "+s.getID();
     }
 
@@ -41,7 +42,7 @@ public class SellerController {
     public @ResponseBody
     Listing createListing(@RequestParam String productName, @RequestParam double price, @RequestParam Date date, @PathVariable int id){
         //without is present check, add it later
-        Seller s = sellerRepository.findById(id).get();
+        Seller s = sellerDao.findById(id);
         Listing l = s.createListing(productName,price,date);
         return listingRepository.save(l);
     }
