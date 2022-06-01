@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface BuyerRepository extends JpaRepository<Buyer,Integer> {
 
-    List<Buyer> findByNumber(String number);
+    Buyer findByNumber(String number);
 
 }

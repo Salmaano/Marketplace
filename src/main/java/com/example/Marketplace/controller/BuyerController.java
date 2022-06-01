@@ -41,7 +41,7 @@ public class BuyerController {
     }*/
 
 
-    //@valid is added to enable bean validation on the request body i think??
+    //@valid is added to enable bean validation on the request body I think??
     @PostMapping(path="/create")
     public @ResponseBody String createNewBuyer (@Valid @RequestBody Buyer b) {
         buyerDao.save(b);

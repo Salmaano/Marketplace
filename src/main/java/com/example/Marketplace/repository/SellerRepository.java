@@ -10,5 +10,5 @@ import java.util.List;
 // bad practice or not
 public interface SellerRepository extends JpaRepository<Seller,Integer> {
 
-    List<Seller> findByNumber(String number);
+    Seller findByNumber(String number);
 }

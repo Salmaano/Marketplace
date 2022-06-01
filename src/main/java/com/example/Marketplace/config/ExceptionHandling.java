@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import javax.naming.event.ObjectChangeListener;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -41,6 +42,16 @@ public class ExceptionHandling extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DuplicateFoundException.class)
     public ResponseEntity<Object> handleDuplicateFound(DuplicateFoundException ex){
         logger.error("The number provided already has an account registered with it",ex);
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(ex.getMessage());
+
+    }
+
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(java.text.ParseException.class)
+    public ResponseEntity<Object> handleParseException(ParseException ex){
+        logger.error("Parse exception has occurred",ex);
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(ex.getMessage());
