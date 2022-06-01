@@ -21,4 +21,3 @@ What the application can do so far:
 I have added annotation based validations and generic exception handling. 
 At the moment, I am working on refactoring my code and adding a DAO layer to interface between the repositories and the controllers to follow
 good coding practice. This is because my code was not packaged ideally and was not separating application and business logic well enough. 
-I am also doing this to add custom validation to resource entity attributes.
