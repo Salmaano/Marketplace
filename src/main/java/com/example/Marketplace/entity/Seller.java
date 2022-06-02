@@ -13,8 +13,6 @@ public class Seller extends User {
     public Seller(String firstName, String lastName, String number){
 
         super(firstName,lastName,number);
-
-
     }
     public Seller(){
 
@@ -24,7 +22,6 @@ public class Seller extends User {
     public Listing createListing(String productName, double price, Date date){
 
         return new Listing(productName, getID(), price, date);
-
 
     }
     

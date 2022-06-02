@@ -107,4 +107,11 @@ public class Order {
         this.date = date;
     }
 
+    public int getListingID() {
+        return listingID;
+    }
+
+    public void setListingID(int listingID) {
+        this.listingID = listingID;
+    }
 }

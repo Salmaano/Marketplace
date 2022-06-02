@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 import javax.validation.constraints.Pattern;
 
 @MappedSuperclass
-public class User {
+public class User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
