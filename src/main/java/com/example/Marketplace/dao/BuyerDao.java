@@ -53,7 +53,7 @@ public class BuyerDao implements Dao<Buyer>{
     @Override
     public void update(Buyer buyer, String[] params) {
         //add an exception for this later, potentially
-        if (buyerRepository.findById(buyer.getID()) != null) {
+        if (buyerRepository.findById(buyer.getID()).get() != null) {
 
             if (buyerRepository.findByNumber(buyer.getNumber()) == null) {
                 buyer.setFirstName(params[0]);

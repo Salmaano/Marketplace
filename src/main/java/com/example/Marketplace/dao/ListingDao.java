@@ -39,7 +39,7 @@ public class ListingDao implements Dao<Listing>{
     @Override
     public void update(Listing listing, String[] params){
 
-        if(listingRepository.findById(listing.getListingID()) != null){
+        if(listingRepository.findById(listing.getListingID()).get() != null){
             listing.setProductName(Objects.requireNonNull(params[0],"Product name cannot be null"));
             listing.setPrice(Objects.requireNonNull(Integer.parseInt(params[1]),"Price cannot be null"));
 

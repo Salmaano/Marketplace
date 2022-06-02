@@ -1,6 +1,8 @@
 package com.example.Marketplace.controller;
 
 import com.example.Marketplace.dao.BuyerDao;
+import com.example.Marketplace.dao.ListingDao;
+import com.example.Marketplace.dao.OrderDao;
 import com.example.Marketplace.entity.Buyer;
 import com.example.Marketplace.entity.Listing;
 import com.example.Marketplace.entity.Order;
@@ -21,15 +23,13 @@ public class BuyerController {
 
     private BuyerRepository buyerRepository;
     private BuyerDao buyerDao;
-    private ListingRepository listingRepository;
-    private OrderRepository orderRepository;
+    private ListingDao listingDao;
+    private OrderDao orderDao;
 
-    public BuyerController(BuyerRepository buyerRepository, ListingRepository listingRepository, OrderRepository orderRepository, BuyerDao buyerDao) {
-
-        this.buyerRepository = buyerRepository;
-        this.listingRepository = listingRepository;
-        this.orderRepository = orderRepository;
+    public BuyerController(BuyerDao buyerDao, OrderDao orderDao, ListingDao listingDao) {
         this.buyerDao = buyerDao;
+        this.orderDao = orderDao;
+        this.listingDao = listingDao;
     }
 
     /*@PostMapping(path="/create")
@@ -67,12 +67,12 @@ public class BuyerController {
         return "testing";
     }
 
-    @GetMapping(path="/{id}/makeOrder/{listing_id}")
-    public @ResponseBody
-    Order makeOrder(@PathVariable int id, @PathVariable int listing_id ){
-        Listing l  = listingRepository.findById(listing_id).get();
+    @PostMapping (path="/{id}/makeOrder/{listing_id}")
+    public @ResponseBody Order makeOrder(@PathVariable int id, @PathVariable int listing_id ){
+        Listing l  = listingDao.get(listing_id).get();
         Order o = new Order(l.getSellerID(),id,l.getListingID(),l.getPrice(),l.getDate());
-        return orderRepository.save(o);
+        orderDao.save(o);
+        return orderDao.get(o.getOrderID()).get();
 
     }
 }

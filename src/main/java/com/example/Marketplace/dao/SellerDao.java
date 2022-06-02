@@ -47,7 +47,7 @@ public class SellerDao implements Dao<Seller> {
     public void update(Seller seller, String[] params) {
 
         //check later if the condition really is reduntant
-        if (sellerRepository.findById(seller.getID()) != null) {
+        if (sellerRepository.findById(seller.getID()).get() != null) {
 
             if (sellerRepository.findByNumber(seller.getNumber()) == null) {
                 seller.setFirstName(Objects.requireNonNull(params[0],"First name cannot be null"));
